@@ -2,11 +2,13 @@ import sys
 import spotipy
 import spotipy.util as util
 
-from credentials import my_client_id, my_client_secret, my_redirect_uri
+from credentials import my_client_id, my_client_secret, my_redirect_uri, username
 
 scope = 'user-library-read'
 
-if len(sys.argv) > 1:
+if 'username' in locals():
+    print(f'Username to use: {username}\n')
+elif len(sys.argv) > 1:
     username = sys.argv[1]
 else:
     print("Usage: %s username" % (sys.argv[0],))
