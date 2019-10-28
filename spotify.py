@@ -21,6 +21,7 @@ if token:
     results = sp.current_user_saved_tracks()
     for item in results['items']:
         track = item['track']
-        print(track['name'] + ' - ' + track['artists'][0]['name'])
+        if track['explicit'] == False:
+            print(track['name'] + ' - ' + track['artists'][0]['name'])
 else:
-    printO("Can't get token for", username)
+    print("Can't get token for", username)
