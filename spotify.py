@@ -4,6 +4,9 @@ import spotipy.util as util
 
 from credentials import my_client_id, my_client_secret, my_redirect_uri, username
 
+def search(spotipyToken, query, target_market="US"):
+    searchResults = spotipyToken.search(q=query, market=target_market)
+
 scope = 'user-library-read'
 
 if 'username' in locals():
