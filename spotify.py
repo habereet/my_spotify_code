@@ -41,6 +41,5 @@ def get_saved_tracks(my_vars):
 def main(my_vars):
     get_saved_tracks(my_vars)
 
-print()
 if __name__== "__main__":
     main(vars())
