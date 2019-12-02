@@ -1,6 +1,7 @@
 import sys
 import spotipy
 import spotipy.util as util
+from pprint import pprint
 
 from credentials import my_client_id, my_client_secret, my_redirect_uri, username
 
