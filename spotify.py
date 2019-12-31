@@ -26,8 +26,7 @@ def get_token(my_vars):
     token = util.prompt_for_user_token(get_user_name(my_vars), scope, my_client_id, my_client_secret, my_redirect_uri)
     return token
     
-def get_saved_tracks(my_vars):
-    token = get_token(my_vars)
+def get_saved_tracks(token):
     
     if token:
         sp = spotipy.Spotify(auth=token)
@@ -39,7 +38,9 @@ def get_saved_tracks(my_vars):
         print("Can't get token for", username)
 
 def main(my_vars):
-    get_saved_tracks(my_vars)
+    token = get_token(my_vars)
+    get_saved_tracks(token)
 
 if __name__== "__main__":
+    # Pass command line, if used, to main
     main(vars())
