@@ -3,3 +3,4 @@ credentials.py
 .vscode/*
 .cache-habereet
 __pycache__/*
+cache-*
