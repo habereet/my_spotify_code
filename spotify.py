@@ -8,11 +8,19 @@ import spotipy.util as util
 # Variables class will store API secrets from stored in .env
 # TODO implement try/catch in case .env isn't set up correctly
 class Variables:
-    def __init__(self):
+    def __init__(self, locals):
         load_dotenv()
         self.clientID = os.getenv("client_id")
         self.clientSecret = os.getenv("client_secret")
         self.redirectURL = os.getenv("redirect_url")
+        try:
+            self.username = os.getenv("username")
+        except NameError:
+            if len(sys.argv) > 1:
+                self.username = sys.argv[1]
+            else:
+                print("Username not provided")
+                sys.exit()
 
 
 # TODO explain search
@@ -36,9 +44,9 @@ def get_user_name(locals):
 
 
 # TOD explain get_token
-def get_token(myVals, username):
+def get_token(myVals):
     scope = 'user-library-read'
-    token = util.prompt_for_user_token(username,
+    token = util.prompt_for_user_token(myVals.username,
                                        scope,
                                        myVals.clientID,
                                        myVals.clientSecret,
@@ -65,8 +73,8 @@ def get_saved_tracks(token):
 # TODO describe workflow
 def main(my_vars):
     myVals = Variables()
-    username = get_user_name(my_vars)
-    token = get_token(myVals, username)
+    #username = get_user_name(my_vars)
+    token = get_token(myVals)
     get_saved_tracks(token)
 
 
