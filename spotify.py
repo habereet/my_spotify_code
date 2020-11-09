@@ -1,46 +1,75 @@
 import sys
+import os
+from dotenv import load_dotenv
 import spotipy
 import spotipy.util as util
-from pprint import pprint
 
-from credentials import my_client_id, my_client_secret, my_redirect_uri, username
 
+# Variables class will store API secrets from stored in .env
+# TODO implement try/catch in case .env isn't set up correctly
+class Variables:
+    def __init__(self):
+        load_dotenv()
+        self.clientID = os.getenv("client_id")
+        self.clientSecret = os.getenv("client_secret")
+        self.redirectURL = os.getenv("redirect_url")
+
+
+# TODO explain search
+# TODO implement search
 def search(spotipyToken, query, target_market="US"):
     searchResults = spotipyToken.search(q=query, market=target_market)
+    print(searchResults)
 
 
+# TODO explain get_user_name
 def get_user_name(locals):
-    if 'username' in locals:
-        username = locals["username"]
-    elif len(sys.argv) > 1:
-        username = sys.argv[1]
-    else:
-        print("Usage: %s username" % (sys.argv[0],))
-        sys.exit()
-        
-    print(f'Username to use: {username}\n')
-    return username
+    try:
+        load_dotenv()
+        return os.getenv("username")
+    except NameError:
+        if len(sys.argv) > 1:
+            return sys.argv[1]
+        else:
+            print("Username not provided")
+            sys.exit()
 
-def get_token(my_vars):
+
+# TOD explain get_token
+def get_token(myVals, username):
     scope = 'user-library-read'
-    token = util.prompt_for_user_token(get_user_name(my_vars), scope, my_client_id, my_client_secret, my_redirect_uri)
+    token = util.prompt_for_user_token(username,
+                                       scope,
+                                       myVals.clientID,
+                                       myVals.clientSecret,
+                                       myVals.redirectURL)
     return token
-    
+
+
+# TODO explain get_saved_tracks
+# TODO Better name values in for loop
 def get_saved_tracks(token):
-    
     if token:
         sp = spotipy.Spotify(auth=token)
         results = sp.current_user_saved_tracks()
         for item in results['items']:
             track = item['track']
-            print(f"{track['name']} - {track['artists'][0]['name']}{' (Explicit)' if track['explicit'] else ''}")
+            name = track['name']
+            artist = track['artists'][0]['name']
+            explicit = track['explicit']
+            print(f"{name} - {artist}{' (Explicit)' if explicit else ''}")
     else:
-        print("Can't get token for", username)
+        print("Can't get token for requested user")
 
+
+# TODO describe workflow
 def main(my_vars):
-    token = get_token(my_vars)
+    myVals = Variables()
+    username = get_user_name(my_vars)
+    token = get_token(myVals, username)
     get_saved_tracks(token)
 
-if __name__== "__main__":
+
+if __name__ == "__main__":
     # Pass command line, if used, to main
     main(vars())
