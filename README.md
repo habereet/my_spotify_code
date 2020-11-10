@@ -11,7 +11,7 @@ To get started
   ```
 * Store your app's data in a file located at the root of the repository called .env including the following:
     ```
-    client_id==client_id_from_spotify_app
+    client_id=client_id_from_spotify_app
     client_secret=client_secret_from_spotify_app
     redirect_url=redirect_URI_from_app
     ```
