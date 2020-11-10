@@ -72,7 +72,7 @@ def get_saved_tracks(token):
 
 # TODO describe workflow
 def main(my_vars):
-    myVals = Variables()
+    myVals = Variables(locals)
     #username = get_user_name(my_vars)
     token = get_token(myVals)
     get_saved_tracks(token)
