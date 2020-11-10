@@ -8,16 +8,20 @@ import spotipy.util as util
 # Variables class will store API secrets from stored in .env
 # TODO implement try/catch in case .env isn't set up correctly
 class Variables:
-    def __init__(self, locals):
+    def __init__(self, commandLineArgs):
         load_dotenv()
         self.clientID = os.getenv("client_id")
         self.clientSecret = os.getenv("client_secret")
         self.redirectURL = os.getenv("redirect_url")
         try:
-            self.username = os.getenv("username")
-        except NameError:
-            if len(sys.argv) > 1:
-                self.username = sys.argv[1]
+            username = os.getenv("username")
+            if username is None:
+                raise ValueError()
+            else:
+                self.username = username
+        except ValueError:
+            if len(commandLineArgs) > 1:
+                self.username = commandLineArgs[1]
             else:
                 print("Username not provided")
                 sys.exit()
@@ -28,19 +32,6 @@ class Variables:
 def search(spotipyToken, query, target_market="US"):
     searchResults = spotipyToken.search(q=query, market=target_market)
     print(searchResults)
-
-
-# TODO explain get_user_name
-def get_user_name(locals):
-    try:
-        load_dotenv()
-        return os.getenv("username")
-    except NameError:
-        if len(sys.argv) > 1:
-            return sys.argv[1]
-        else:
-            print("Username not provided")
-            sys.exit()
 
 
 # TOD explain get_token
@@ -71,13 +62,12 @@ def get_saved_tracks(token):
 
 
 # TODO describe workflow
-def main(my_vars):
-    myVals = Variables(locals)
-    #username = get_user_name(my_vars)
+def main():
+    myVals = Variables(sys.argv)
     token = get_token(myVals)
     get_saved_tracks(token)
 
 
 if __name__ == "__main__":
     # Pass command line, if used, to main
-    main(vars())
+    main()
