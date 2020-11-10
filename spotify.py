@@ -55,17 +55,6 @@ def search(spotipyToken, query, target_market="US"):
     print(searchResults)
 
 
-# TOD explain get_token
-def get_token(myVals):
-    scope = 'user-library-read'
-    token = util.prompt_for_user_token(myVals.username,
-                                       scope,
-                                       myVals.clientID,
-                                       myVals.clientSecret,
-                                       myVals.redirectURL)
-    return token
-
-
 # TODO explain get_saved_tracks
 # TODO Better name values in for loop
 def get_saved_tracks(myVals):
