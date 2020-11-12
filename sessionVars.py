@@ -63,11 +63,10 @@ class Variables:
         try:
             scope = 'user-library-read'
             self.token = util.prompt_for_user_token(self.username,
-                                                scope,
-                                                self.clientID,
-                                                self.clientSecret,
-                                                self.redirectURL)
-        except:
+                                                    scope,
+                                                    self.clientID,
+                                                    self.clientSecret,
+                                                    self.redirectURL)
+        except Exception:
             print("User's session token not found")
             sys.exit()
-
