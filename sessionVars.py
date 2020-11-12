@@ -35,7 +35,7 @@ class Variables:
                 raise ValueError()
             else:
                 self.clientID = clientID
-        except ValueEreor:
+        except ValueError:
             print("Client ID not provided")
             sys.exit()
 
