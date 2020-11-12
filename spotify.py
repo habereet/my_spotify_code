@@ -33,5 +33,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # Pass command line, if used, to main
     main()
