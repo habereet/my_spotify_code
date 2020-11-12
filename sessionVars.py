@@ -30,7 +30,14 @@ class Variables:
                 sys.exit()
 
     def set_clientID(self, clientID):
-        self.clientID = clientID
+        try:
+            if clientID is None:
+                raise ValueError()
+            else:
+                self.clientID = clientID
+        except ValueEreor:
+            print("Client ID not provided")
+            sys.exit()
 
     def set_clientSecret(self, clientSecret):
         self.clientSecret = clientSecret
