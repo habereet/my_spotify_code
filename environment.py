@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
-import spotipy
 import spotipy.util as util
 import os
+import sys
 
 
 # Variables class will store API secrets from stored in .env

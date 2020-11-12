@@ -1,15 +1,12 @@
 import sys
 from environment import Variables
-from dotenv import load_dotenv
 import spotipy
-import spotipy.util as util
-
 
 
 # TODO explain search
 # TODO implement search
 def search(spotipyToken, query, target_market="US"):
-    searchResults = spotipyToken.search(q=query, market=target_market) 
+    searchResults = spotipyToken.search(q=query, market=target_market)
     print(searchResults)
 
 
