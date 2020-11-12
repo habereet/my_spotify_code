@@ -1,7 +1,7 @@
 env/*
 credentials.py
 .vscode/*
-.cache-habereet
+.cache-*
 __pycache__/*
 cache-*
 trackData.json

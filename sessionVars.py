@@ -60,9 +60,14 @@ class Variables:
             sys.exit()
 
     def set_token(self):
-        scope = 'user-library-read'
-        self.token = util.prompt_for_user_token(self.username,
+        try:
+            scope = 'user-library-read'
+            self.token = util.prompt_for_user_token(self.username,
                                                 scope,
                                                 self.clientID,
                                                 self.clientSecret,
                                                 self.redirectURL)
+        except:
+            print("User's session token not found")
+            sys.exit()
+
