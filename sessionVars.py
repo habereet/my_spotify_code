@@ -50,7 +50,14 @@ class Variables:
             sys.exit()
 
     def set_redirectURL(self, redirectURL):
-        self.redirectURL = redirectURL
+        try:
+            if redirectURL is None:
+                raise ValueError
+            else:
+                self.redirectURL = redirectURL
+        except ValueError:
+            print("Redirect URL not provided")
+            sys.exit()
 
     def set_token(self):
         scope = 'user-library-read'
