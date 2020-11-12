@@ -1,5 +1,5 @@
 import sys
-from environment import Variables
+from sessionVars import Variables
 import spotipy
 
 
