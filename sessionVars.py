@@ -40,7 +40,14 @@ class Variables:
             sys.exit()
 
     def set_clientSecret(self, clientSecret):
-        self.clientSecret = clientSecret
+        try:
+            if clientSecret is None:
+                raise ValueError
+            else:
+                self.clientSecret = clientSecret
+        except ValueError:
+            print("Client Secret not provided")
+            sys.exit()
 
     def set_redirectURL(self, redirectURL):
         self.redirectURL = redirectURL
