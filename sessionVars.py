@@ -21,6 +21,9 @@ class Variables:
     def get_username(self):
         return self.username
 
+    def get_clientID(self):
+        return self.clientID
+
     def set_username(self, commandLineArgs):
         try:
             username = os.getenv("username")
@@ -70,7 +73,7 @@ class Variables:
             scope = 'user-library-read'
             self.token = util.prompt_for_user_token(self.username,
                                                     scope,
-                                                    self.clientID,
+                                                    self.get_clientID(),
                                                     self.clientSecret,
                                                     self.redirectURL)
         except Exception:
