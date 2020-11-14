@@ -24,7 +24,7 @@ def get_saved_tracks(myVals):
             explicit = track['explicit']
             print(f"{name} - {artist}{' (Explicit)' if explicit else ''}")
     else:
-        print(f"Token doesn't exist for {myVals.username}")
+        print(f"Token doesn't exist for {myVals.get_username()}")
 
 
 # TODO describe workflow
