@@ -15,6 +15,9 @@ class Variables:
         self.set_username(commandLineArgs)
         self.set_token()
 
+    def get_token(self):
+        return self.token
+
     def set_username(self, commandLineArgs):
         try:
             username = os.getenv("username")

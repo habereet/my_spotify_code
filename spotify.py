@@ -13,8 +13,9 @@ def search(spotipyToken, query, target_market="US"):
 # TODO explain get_saved_tracks
 # TODO Better name values in for loop
 def get_saved_tracks(myVals):
-    if myVals.token:
-        sp = spotipy.Spotify(auth=myVals.token)
+    token = myVals.get_token()
+    if token:
+        sp = spotipy.Spotify(auth=token)
         results = sp.current_user_saved_tracks()
         for item in results['items']:
             track = item['track']
