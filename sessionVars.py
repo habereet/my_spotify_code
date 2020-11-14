@@ -71,7 +71,7 @@ class Variables:
     def set_token(self):
         try:
             scope = 'user-library-read'
-            self.token = util.prompt_for_user_token(self.username,
+            self.token = util.prompt_for_user_token(self.get_username(),
                                                     scope,
                                                     self.get_clientID(),
                                                     self.clientSecret,
