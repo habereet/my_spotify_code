@@ -24,6 +24,9 @@ class Variables:
     def get_clientID(self):
         return self.clientID
 
+    def get_clientSecret(self):
+        return self.clientSecret
+
     def set_username(self, commandLineArgs):
         try:
             username = os.getenv("username")
@@ -74,7 +77,7 @@ class Variables:
             self.token = util.prompt_for_user_token(self.get_username(),
                                                     scope,
                                                     self.get_clientID(),
-                                                    self.clientSecret,
+                                                    self.get_clientSecret(),
                                                     self.redirectURL)
         except Exception:
             print("User's session token not found")
