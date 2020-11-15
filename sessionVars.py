@@ -18,6 +18,9 @@ class Variables:
     def get_token(self):
         return self.token
 
+    def get_redirectURL(self):
+        return self.redirectURL
+
     def get_username(self):
         return self.username
 
@@ -78,7 +81,7 @@ class Variables:
                                                     scope,
                                                     self.get_clientID(),
                                                     self.get_clientSecret(),
-                                                    self.redirectURL)
+                                                    self.get_redirectURL())
         except Exception:
             print("User's session token not found")
             sys.exit()
