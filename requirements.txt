@@ -8,4 +8,4 @@ pyflakes==2.2.0
 python-dotenv==0.15.0
 requests==2.22.0
 spotipy==2.4.4
-urllib3==1.25.6
+urllib3==1.26.5
