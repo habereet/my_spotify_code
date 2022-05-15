@@ -1,4 +1,4 @@
-Some code that I'm building to work within the Spotify API and do things (that I want).
+Some code that I'm building to work within the Spotify API and do things.
 
 Uses [spotipy](https://spotipy.readthedocs.io) to interact with the API.
 
@@ -24,3 +24,5 @@ To get started
     ```
     python spotify.py Spotify_user_to_use
     ```
+
+* Depending on your IDE, you'll need to open a URL specified by spotipy and enter or click on a redirect URL. Once you've done that, you should be good to go.
