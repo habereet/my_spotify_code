@@ -22,7 +22,7 @@ def get_saved_tracks(myVals):
             artist = track['artists'][0]['name']
             explicit = track['explicit']
             print(f"{name} - {artist}{' (Explicit)' if explicit else ''}")
-    except:
+    except Exception:
         print(f"Token doesn't exist for {myVals.get_username()}")
 
 
