@@ -13,9 +13,8 @@ def search(spotipyToken, query, target_market="US"):
 # TODO explain get_saved_tracks
 # TODO Better name values in for loop
 def get_saved_tracks(myVals):
-    token = myVals.get_token()
-    if token:
-        sp = spotipy.Spotify(auth=token)
+    try:
+        sp = spotipy.Spotify(auth=myVals.get_token())
         results = sp.current_user_saved_tracks()
         for item in results['items']:
             track = item['track']
@@ -23,7 +22,7 @@ def get_saved_tracks(myVals):
             artist = track['artists'][0]['name']
             explicit = track['explicit']
             print(f"{name} - {artist}{' (Explicit)' if explicit else ''}")
-    else:
+    except:
         print(f"Token doesn't exist for {myVals.get_username()}")
 
 
