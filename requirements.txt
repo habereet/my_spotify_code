@@ -92,7 +92,7 @@ six==1.16.0
 smmap==5.0.0
 snowballstemmer==2.2.0
 soupsieve==2.3.1
-spotipy==2.4.4
+spotipy==2.22.1
 stack-data==0.2.0
 stevedore==3.5.0
 terminado==0.13.3
